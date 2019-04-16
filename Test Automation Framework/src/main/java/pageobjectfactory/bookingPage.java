@@ -5,10 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.PageObjectBase;
 
 import java.util.List;
@@ -23,7 +26,7 @@ public class bookingPage extends PageObjectBase {
         setDriver(edriver);
     }
 
-    @FindBy(how = How.ID, using = "li_myaccount")
+    @FindBy(how = How.XPATH, using = "/html/body/nav/div/div[2]/ul[1]/li[2]/a")
     public WebElement myAccount;
 
     @FindBy(how = How.XPATH, using = "//a[text(),'Login']")
@@ -35,7 +38,7 @@ public class bookingPage extends PageObjectBase {
     @FindBy(how = How.NAME, using = "password")
     public WebElement password;
 
-    @FindBy(how = How.XPATH, using = "//button[text(),'Login']")
+    @FindBy(how = How.XPATH, using = "//button[contains(text(),'Login')]")
     public WebElement btnLogin;
 
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'Hotels')]")
@@ -53,7 +56,7 @@ public class bookingPage extends PageObjectBase {
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'Enter City Or Airport')]")
     public WebElement enterCityOrAirport;
 
-    @FindBy(how = How.XPATH, using = "//span[contains(text(),'Search by Listing or City Name')]")
+    @FindBy(how = How.XPATH, using = "//*[@id='s2id_autogen5']/a/span[1]")
     public WebElement enterTourName;
 
     @FindBy(how = How.NAME, using = "checkin")
@@ -106,12 +109,13 @@ public class bookingPage extends PageObjectBase {
         myAccount.click();
     }
 
-    public void clickSearchButton()
-    {
+    public void clickSearchButton() {
         btnSearchTour.click();
     }
 
     public void setEnterTourName(String tourName) {
+        WebDriverWait wait = new WebDriverWait(edriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(enterTourName));
         enterTourName.sendKeys(tourName);
     }
 
@@ -124,9 +128,9 @@ public class bookingPage extends PageObjectBase {
     }
 
     public void loginToTheApplication(String uname, String pwd) {
-        login.click();
         username.sendKeys(uname);
         password.sendKeys(pwd);
+        btnLogin.click();
     }
 
     public void clickHotels() {
@@ -178,7 +182,11 @@ public class bookingPage extends PageObjectBase {
     }
 
     public void searchHotel(String hotelName) {
+        Actions actions = new Actions(edriver);
+        actions.moveToElement(searchByHotelOrCityName);
+        actions.click();
         searchByHotelOrCityName.sendKeys(hotelName);
+
     }
 
     public void selectRoom() {

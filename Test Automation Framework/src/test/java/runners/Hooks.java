@@ -26,13 +26,13 @@ public class Hooks {
      */
     public void openBrowser(Scenario scenario) throws Exception {
         configProperties = new Properties();
-        configProperties.load(new FileInputStream("config.properties"));
+        configProperties.load(new FileInputStream("//Users//poplia//Documents//wooliesX//Test Automation Framework//config.properties"));
         String browserName = configProperties.getProperty("browser");
         driver = browser.setLocalDriver(browserName);
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         //driver.navigate().to(configProperties.getProperty("URL"));
         this.scenario = scenario;

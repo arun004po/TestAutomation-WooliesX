@@ -27,10 +27,10 @@ public class Browser {
             System.setProperty("webdriver.gecko.driver", CurrentDirectory + "\\drivers\\geckodriver.exe");
             return new FirefoxDriver();
         }else if (browserName.equalsIgnoreCase(EDGE_BROWSER_NAME)) {
-            System.setProperty("webdriver.chrome.driver", CurrentDirectory + "\\drivers\\MicrosoftWebDriver.exe");
+            System.setProperty("webdriver.chrome.driver", CurrentDirectory + "\\Drivers\\MicrosoftWebDriver.exe");
             return new ChromeDriver();
         }else if (browserName.equalsIgnoreCase(IE_BROWSER_NAME)) {
-            System.setProperty("webdriver.ie.driver", CurrentDirectory + "\\drivers\\IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver", CurrentDirectory + "\\Drivers\\IEDriverServer.exe");
             DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
             caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
             caps.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
@@ -39,8 +39,12 @@ public class Browser {
             caps.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
             return new InternetExplorerDriver(caps);
         }else {
-            System.setProperty("webdriver.chrome.driver", CurrentDirectory + "\\drivers\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "//Users//poplia//Documents//wooliesX//Test Automation Framework//Drivers//chromedriver 4");
             return new ChromeDriver();
+
+
+
+
         }
     }
 

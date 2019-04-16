@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
 import pageobjectfactory.ItemPage;
 import pageobjectfactory.bookingPage;
 import runners.Hooks;
@@ -19,11 +20,13 @@ public class BookingStepDefinitions extends Helper {
     @Given("^I am logged in to the application$")
     public void iAmLoggedInToTheApplication() {
         bookingPage = new bookingPage(driver);
-        driver.navigate().to("https://www.ebay.com.au/");
+        driver.navigate().to("https://www.phptravels.net/login");
+        bookingPage.loginToTheApplication("arunpopli1@gmail.com","satnamwaheguru");
     }
 
     @When("^I search hotel \"([^\"]*)\"$")
     public void iSearchHotel(String hotelName) throws Throwable {
+        bookingPage.clickHotels();
         bookingPage.searchHotel(hotelName);
     }
 
@@ -48,6 +51,7 @@ public class BookingStepDefinitions extends Helper {
 
     @When("^I enter city \"([^\"]*)\" to find flight$")
     public void iEnterCityToFindFlight(String cityName) throws Throwable {
+        bookingPage.clickFlights();
         bookingPage.setEnterCityOrAirport(cityName);
     }
 
@@ -70,6 +74,7 @@ public class BookingStepDefinitions extends Helper {
 
     @When("^I enter trip \"([^\"]*)\" to find tour$")
     public void iEnterTripToFindTour(String tourName) throws Throwable {
+        bookingPage.clickTours();
         bookingPage.setEnterTourName(tourName);
     }
 

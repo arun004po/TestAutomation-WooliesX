@@ -10,3 +10,4 @@ Feature: In order to add items in cart and checkout
     And   I add second book to the cart
     And   I checkout items
     Then  Verify items are added to checkout
+
